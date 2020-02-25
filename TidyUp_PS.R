@@ -51,6 +51,7 @@ summary(tbl_clean)
 # some of our variables have missing values that aren't properly coded as missing  
 # recode missing values in gender and state
 
+#not sure what's being asked of here. Missing values in the base file we're already NAs
 tbl_clean$gender <- na_if(tbl_clean$gender, NA) 
 
 tbl_clean$state <- na_if(tbl_clean$state, NA)
@@ -87,7 +88,6 @@ edu_count <- tbl_clean %>% group_by(edu) %>% tally()
 #create a new variable that recodes education into: no highscool, some highschool, highschool graduate, some college, postsecondary degree, masters (MA & MBA), advanced degree
 #remember that the recode function isn't always the best solution for numeric variables
 tbl_clean$edu7 <- cut(tbl_clean$edu, breaks = c(1,2,3,4,5,8,9,13,14) , labels = c("no highschool", "some highschool", "highschool graduate", "some college", "postsecondary degree", " masters (MA & MBA)", "advanced degree","masters (MA & MBA)"))
-tbl_clean1$edu7[tbl_clean1$edu==14] <- "masters (MA & MBA)"
 
 # mutating variables ---------------------------------------------  
 # rewrite the above recoding steps so that they both occur within a single call of the mutate function
